@@ -1,6 +1,6 @@
 #include "AVHeader.h"
 
-UNICODE_STRING threatName = RTL_CONSTANT_STRING(L"virus.exe");
+UNICODE_STRING THREAT_NAME = RTL_CONSTANT_STRING(L"*VIRUS*");
 
 bool IsThreatByFilename(PUNICODE_STRING fileName) {
 
@@ -12,8 +12,14 @@ bool IsThreatByFilename(PUNICODE_STRING fileName) {
 	/************************************************************************/
 
 	// ENTER CODE HERE
-	UNREFERENCED_PARAMETER(fileName);
-	return false;
+	//UNREFERENCED_PARAMETER(fileName);
+	BOOLEAN isVirus = FsRtlIsNameInExpression(
+		&THREAT_NAME,
+		fileName,
+		TRUE,
+		NULL);
+
+	return isVirus;
 }
 
 
@@ -32,9 +38,10 @@ FLT_PREOP_CALLBACK_STATUS AntiVirusPreReadOperation(_Inout_ PFLT_CALLBACK_DATA D
 		/*		request and return a value which indicates that we are done		*		
 		/*		and the request is complete.									*
 		/************************************************************************/
-
 		// ENTER CODE HERE
-		return FLT_PREOP_SUCCESS_NO_CALLBACK;
+		Data->IoStatus.Status = STATUS_VIRUS_INFECTED;
+		Data->IoStatus.Information = 0;
+		return FLT_PREOP_COMPLETE;
 
 	} else {
 		Data->IoStatus.Status = STATUS_SUCCESS;

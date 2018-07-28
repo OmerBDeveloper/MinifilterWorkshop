@@ -97,15 +97,16 @@ NTSTATUS DriverEntry (_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_STRING Reg
 		/*		Compile and test the driver.									*
 		/*																		*
 		/************************************************************************/
-
 		// ENTER CODE HERE
+		DbgPrint("Our Cool Driver :)\r\n");
+
 
 		if (!NT_SUCCESS( status )) {
 			FltUnregisterFilter( gFilterHandle );
 		}
 
 		/************************************************************************/
-		/* STEP 4:																*
+		/* STEP X:																*
 		/*		Monitor registry operations and make sure that no value is		*
 		/*		to "virus".														*
 		/*		In order to monitor registry operations read about				*
