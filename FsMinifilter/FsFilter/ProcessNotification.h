@@ -1,5 +1,5 @@
 #pragma once
-#include <Ntddk.h>
+#include <ntifs.h>
 
 
 typedef struct
@@ -22,6 +22,8 @@ namespace ProcessNotification
 		HANDLE ProcessId,
 		PPS_CREATE_NOTIFY_INFO CreateInfo
 	);
+
+	bool checkIsVirus(PEPROCESS Process);
 };
 
 

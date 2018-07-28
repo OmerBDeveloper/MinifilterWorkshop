@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProcessNotification.cpp" />
+    <ClCompile Include="Utils.cpp" />
     <ResourceCompile Include="FsFilter.rc" />
     <ClCompile Include="AVDriver.cpp" />
     <ClCompile Include="FsFilter.cpp" />
@@ -195,6 +196,7 @@
   <ItemGroup>
     <ClInclude Include="AVHeader.h" />
     <ClInclude Include="ProcessNotification.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

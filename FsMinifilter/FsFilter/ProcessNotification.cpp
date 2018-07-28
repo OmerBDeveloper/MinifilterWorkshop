@@ -1,4 +1,5 @@
 #include "ProcessNotification.h"
+#include "Utils.h"
 
 ProcessArray g_processArray;
 
@@ -27,12 +28,25 @@ namespace ProcessNotification
 	{
 		UNREFERENCED_PARAMETER(ProcessId);
 		
+		DbgBreakPoint();
+		UNICODE_STRING processPath;
+		Utils::getProcessPath(Process, &processPath);
+		//if (checkVirusFile(ProcessId))
+		//{
+		//	killProcess(Process);
+		//}
+		//
 		if (CreateInfo)
 		{
 			g_processArray.processes[g_processArray.processIndex] = Process;
 			g_processArray.processIndex++;
 		}
 	}
+	/*
+	bool checkIsVirus(PEPROCESS Process)
+	{
+		Process->
+	}*/
 }
 
 
