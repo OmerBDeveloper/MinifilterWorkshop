@@ -30,6 +30,9 @@
     <ClCompile Include="FsFilter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProcessNotification.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="FsFilter.rc">
@@ -38,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVHeader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcessNotification.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

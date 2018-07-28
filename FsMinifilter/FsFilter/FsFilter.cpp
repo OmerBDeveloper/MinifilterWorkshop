@@ -5,6 +5,7 @@
 --*/
 
 #include "AVHeader.h"
+#include "ProcessNotification.h"
 
 /// This is the global point to out mini filter instance
 PFLT_FILTER gFilterHandle;
@@ -104,6 +105,15 @@ NTSTATUS DriverEntry (_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_STRING Reg
 		if (!NT_SUCCESS( status )) {
 			FltUnregisterFilter( gFilterHandle );
 		}
+
+		/************************************************************************/
+		/* STEP 4:																*
+		/*		Add a new process notification routine that saves the           *
+		*		PEPROCESS's to a global array.									*
+		/*																		*
+		/************************************************************************/
+		ProcessNotification::registerProcessNotify();
+
 
 		/************************************************************************/
 		/* STEP X:																*
