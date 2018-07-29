@@ -154,6 +154,7 @@ NTSTATUS FsFilterUnload (_In_ FLT_FILTER_UNLOAD_FLAGS Flags) {
 	UNREFERENCED_PARAMETER( Flags );
 	PAGED_CODE();
 
+	ProcessNotification::unregisterProcessNotify();
 	FltUnregisterFilter( gFilterHandle );
 
 	return STATUS_SUCCESS;

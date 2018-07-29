@@ -23,7 +23,11 @@ bool UnicodeString::init() {
 	return true;
 }
 
-bool UnicodeString::copyFrom(PUNICODE_STRING other) {
+bool UnicodeString::copyFrom(PCUNICODE_STRING other) {
 	NTSTATUS status = RtlAppendUnicodeStringToString(&m_string, other);
 	return NT_SUCCESS(status);
+}
+
+PUNICODE_STRING UnicodeString::getUnicodeString() {
+	return &m_string;
 }

@@ -10,7 +10,8 @@ public:
 	~UnicodeString();
 
 	bool init();
-	bool copyFrom(PUNICODE_STRING other);
+	bool copyFrom(PCUNICODE_STRING other);
+	PUNICODE_STRING getUnicodeString();
 
 private:
 	USHORT m_maxSize;

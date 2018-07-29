@@ -5,6 +5,7 @@
 #include <suppress.h>
 #include <ntdef.h>
 
+extern PFLT_FILTER gFilterHandle;
 
 /*************************************************************************
 Prototypes

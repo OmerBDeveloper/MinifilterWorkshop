@@ -1,6 +1,6 @@
 #pragma once
 #include <ntifs.h>
-
+#include "UnicodeString.h"
 
 typedef struct
 {
@@ -14,7 +14,7 @@ extern ProcessArray g_processArray;
 
 namespace ProcessNotification 
 {
-	void registerProcessNotify();
+	bool registerProcessNotify();
 		
 
 	void unregisterProcessNotify();
@@ -25,7 +25,9 @@ namespace ProcessNotification
 		PPS_CREATE_NOTIFY_INFO createInfo
 	);
 
-	bool checkIsVirus(PEPROCESS process);
+	bool checkIsVirus(UnicodeString& processPath);
+
+	bool searchInBuffer(const void* buffer, UINT32 bufferSize);
 };
 
 
