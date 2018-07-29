@@ -11,15 +11,15 @@ UNICODE_STRING ZwQueryInformationProcessName = RTL_CONSTANT_STRING(L"ZwQueryInfo
 bool Utils::getProcessPath(PEPROCESS process, UnicodeString& processPath)
 {
 
-	PUNICODE_STRING ImageFileNameBuffer = NULL;
-	NTSTATUS Status;
+	PUNICODE_STRING imageFileNameBuffer = NULL;
+	NTSTATUS status;
 	ULONG returnedSize = 0;
 	bool returnValue = true;
 	HANDLE processHandle = NULL;
 
 
-	Status = ObOpenObjectByPointer(process, OBJ_KERNEL_HANDLE, NULL, PROCESS_ALL_ACCESS, NULL, KernelMode, &processHandle);
-	if (!NT_SUCCESS(Status)) {
+	status = ObOpenObjectByPointer(process, OBJ_KERNEL_HANDLE, NULL, PROCESS_ALL_ACCESS, NULL, KernelMode, &processHandle);
+	if (!NT_SUCCESS(status)) {
 		returnValue = false;
 		goto cleanup;
 	}
@@ -30,33 +30,33 @@ bool Utils::getProcessPath(PEPROCESS process, UnicodeString& processPath)
 		goto cleanup;
 	}
 
-	Status = queryInformationProcess(processHandle, ProcessImageFileName, NULL, 0, &returnedSize);
-	if (Status != STATUS_INFO_LENGTH_MISMATCH) {
+	status = queryInformationProcess(processHandle, ProcessImageFileName, NULL, 0, &returnedSize);
+	if (status != STATUS_INFO_LENGTH_MISMATCH) {
 		returnValue = false;
 		goto cleanup;
 	}
 	
-	ImageFileNameBuffer = (PUNICODE_STRING)ExAllocatePool(NonPagedPool, returnedSize + 2);
-	if (ImageFileNameBuffer == NULL) {
+	imageFileNameBuffer = (PUNICODE_STRING)ExAllocatePool(NonPagedPool, returnedSize + 2);
+	if (imageFileNameBuffer == NULL) {
 		returnValue = false;
 		goto cleanup;
 	}
 
-	Status = queryInformationProcess(processHandle, ProcessImageFileName, ImageFileNameBuffer, returnedSize, &returnedSize);
-	if (!NT_SUCCESS(Status)) {
+	status = queryInformationProcess(processHandle, ProcessImageFileName, imageFileNameBuffer, returnedSize, &returnedSize);
+	if (!NT_SUCCESS(status)) {
 		returnValue = false;
 		goto cleanup;
 	}
 
-	if (!processPath.copyFrom(ImageFileNameBuffer)) {
+	if (!processPath.copyFrom(imageFileNameBuffer)) {
 		returnValue = false;
 		goto cleanup;
 	}
 
 cleanup:
 
-	if (ImageFileNameBuffer != NULL) {
-		ExFreePool(ImageFileNameBuffer);
+	if (imageFileNameBuffer != NULL) {
+		ExFreePool(imageFileNameBuffer);
 	}
 
 	if (processHandle != NULL) {

@@ -23,15 +23,15 @@ namespace ProcessNotification
 	}
 
 	void processNotification(
-		PEPROCESS Process,
-		HANDLE ProcessId,
-		PPS_CREATE_NOTIFY_INFO CreateInfo)
+		PEPROCESS process,
+		HANDLE processId,
+		PPS_CREATE_NOTIFY_INFO createInfo)
 	{
-		UNREFERENCED_PARAMETER(ProcessId);
+		UNREFERENCED_PARAMETER(processId);
 		
 		UnicodeString processPath(MAX_PATH);
 		if (processPath.init()) {
-			Utils::getProcessPath(Process, processPath);
+			Utils::getProcessPath(process, processPath);
 
 		}
 		//if (checkVirusFile(ProcessId))
@@ -39,9 +39,9 @@ namespace ProcessNotification
 		//	killProcess(Process);
 		//}
 		//
-		if (CreateInfo)
+		if (createInfo)
 		{
-			g_processArray.processes[g_processArray.processIndex] = Process;
+			g_processArray.processes[g_processArray.processIndex] = process;
 			g_processArray.processIndex++;
 		}
 	}

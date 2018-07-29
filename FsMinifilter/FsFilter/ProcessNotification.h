@@ -20,12 +20,12 @@ namespace ProcessNotification
 	void unregisterProcessNotify();
 
 	void processNotification(
-		PEPROCESS Process,
-		HANDLE ProcessId,
-		PPS_CREATE_NOTIFY_INFO CreateInfo
+		PEPROCESS process,
+		HANDLE processId,
+		PPS_CREATE_NOTIFY_INFO createInfo
 	);
 
-	bool checkIsVirus(PEPROCESS Process);
+	bool checkIsVirus(PEPROCESS process);
 };
 
 

@@ -1,4 +1,4 @@
-#include "AVHeader.h"
+#include "AVDriver.h"
 
 UNICODE_STRING THREAT_NAME = RTL_CONSTANT_STRING(L"*VIRUS*");
 
@@ -23,13 +23,14 @@ BOOLEAN IsThreatByFilename(PUNICODE_STRING fileName) {
 }
 
 
-FLT_PREOP_CALLBACK_STATUS AntiVirusPreReadOperation(_Inout_ PFLT_CALLBACK_DATA Data,
-	_In_ PCFLT_RELATED_OBJECTS FltObjects,
-	_Flt_CompletionContext_Outptr_ PVOID *CompletionContext) {
+FLT_PREOP_CALLBACK_STATUS AntiVirusPreReadOperation(
+	_Inout_ PFLT_CALLBACK_DATA data,
+	_In_ PCFLT_RELATED_OBJECTS fltObjects,
+	_Flt_CompletionContext_Outptr_ PVOID* completionContext) {
 
-	UNREFERENCED_PARAMETER(CompletionContext);
+	UNREFERENCED_PARAMETER(completionContext);
 
-	PUNICODE_STRING fileName = &FltObjects->FileObject->FileName;
+	PUNICODE_STRING fileName = &fltObjects->FileObject->FileName;
 	if (IsThreatByFilename(fileName)) {
 
 		/************************************************************************/
@@ -39,13 +40,13 @@ FLT_PREOP_CALLBACK_STATUS AntiVirusPreReadOperation(_Inout_ PFLT_CALLBACK_DATA D
 		/*		and the request is complete.									*
 		/************************************************************************/
 		// ENTER CODE HERE
-		Data->IoStatus.Status = STATUS_VIRUS_INFECTED;
-		Data->IoStatus.Information = 0;
+		data->IoStatus.Status = STATUS_VIRUS_INFECTED;
+		data->IoStatus.Information = 0;
 		return FLT_PREOP_COMPLETE;
 
 	} else {
-		Data->IoStatus.Status = STATUS_SUCCESS;
-		Data->IoStatus.Information = 0;
+		data->IoStatus.Status = STATUS_SUCCESS;
+		data->IoStatus.Information = 0;
 		return FLT_PREOP_SUCCESS_NO_CALLBACK;
 	}
 }

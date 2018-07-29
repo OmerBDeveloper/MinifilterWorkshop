@@ -195,7 +195,8 @@
     <FilesToPackage Include="$(TargetPath)" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AVHeader.h" />
+    <ClInclude Include="AVDriver.h" />
+    <ClInclude Include="FsFilter.h" />
     <ClInclude Include="ProcessNotification.h" />
     <ClInclude Include="UnicodeString.h" />
     <ClInclude Include="Utils.h" />

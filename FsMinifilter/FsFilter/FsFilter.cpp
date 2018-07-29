@@ -4,7 +4,8 @@
 
 --*/
 
-#include "AVHeader.h"
+#include "FsFilter.h"
+#include "AVDriver.h"
 #include "ProcessNotification.h"
 
 /// This is the global point to out mini filter instance
