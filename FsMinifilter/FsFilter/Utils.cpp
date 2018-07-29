@@ -8,7 +8,7 @@ typedef NTSTATUS(*QueryProcessInformation_t)(
 	__out_opt PULONG);
 
 UNICODE_STRING ZwQueryInformationProcessName = RTL_CONSTANT_STRING(L"ZwQueryInformationProcess");
-bool Utils::getProcessPath(PEPROCESS process, PUNICODE_STRING processPath)
+bool Utils::getProcessPath(PEPROCESS process, UnicodeString& processPath)
 {
 
 	PUNICODE_STRING ImageFileNameBuffer = NULL;
@@ -48,12 +48,10 @@ bool Utils::getProcessPath(PEPROCESS process, PUNICODE_STRING processPath)
 		goto cleanup;
 	}
 
-	Status = RtlAppendUnicodeStringToString(processPath, ImageFileNameBuffer);
-	if (!NT_SUCCESS(Status)) {
+	if (!processPath.copyFrom(ImageFileNameBuffer)) {
 		returnValue = false;
 		goto cleanup;
 	}
-
 
 cleanup:
 

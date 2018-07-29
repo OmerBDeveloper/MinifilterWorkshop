@@ -1,5 +1,6 @@
 #include "ProcessNotification.h"
 #include "Utils.h"
+#include "UnicodeString.h"
 
 ProcessArray g_processArray;
 
@@ -28,13 +29,11 @@ namespace ProcessNotification
 	{
 		UNREFERENCED_PARAMETER(ProcessId);
 		
-		DbgBreakPoint();
-		UNICODE_STRING processPath;
+		UnicodeString processPath(MAX_PATH);
+		if (processPath.init()) {
+			Utils::getProcessPath(Process, processPath);
 
-		processPath.Buffer = (PWCH)ExAllocatePool(PagedPool, MAX_PATH);
-		processPath.Length = 0;
-		processPath.MaximumLength = MAX_PATH;
-		Utils::getProcessPath(Process, &processPath);
+		}
 		//if (checkVirusFile(ProcessId))
 		//{
 		//	killProcess(Process);
