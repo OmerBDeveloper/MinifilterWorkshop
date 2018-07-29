@@ -30,6 +30,10 @@ namespace ProcessNotification
 		
 		DbgBreakPoint();
 		UNICODE_STRING processPath;
+
+		processPath.Buffer = (PWCH)ExAllocatePool(PagedPool, MAX_PATH);
+		processPath.Length = 0;
+		processPath.MaximumLength = MAX_PATH;
 		Utils::getProcessPath(Process, &processPath);
 		//if (checkVirusFile(ProcessId))
 		//{

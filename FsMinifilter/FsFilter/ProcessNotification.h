@@ -10,6 +10,8 @@ typedef struct
 
 extern ProcessArray g_processArray;
 
+#define MAX_PATH 512
+
 namespace ProcessNotification 
 {
 	void registerProcessNotify();

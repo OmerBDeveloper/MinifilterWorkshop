@@ -4,6 +4,6 @@
 class Utils
 {
 public:
-	static void getProcessPath(PEPROCESS process, PUNICODE_STRING processPath);
+	static bool getProcessPath(PEPROCESS process, PUNICODE_STRING processPath);
 };
 

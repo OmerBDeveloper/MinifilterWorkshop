@@ -2,7 +2,7 @@
 
 UNICODE_STRING THREAT_NAME = RTL_CONSTANT_STRING(L"*VIRUS*");
 
-bool IsThreatByFilename(PUNICODE_STRING fileName) {
+BOOLEAN IsThreatByFilename(PUNICODE_STRING fileName) {
 
 	/************************************************************************/
 	/* STEP 2:																*

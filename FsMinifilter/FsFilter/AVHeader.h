@@ -10,7 +10,7 @@
 Prototypes
 *************************************************************************/
 
-bool IsThreatByFilename(PUNICODE_STRING fileName);
+BOOLEAN IsThreatByFilename(PUNICODE_STRING fileName);
 
 EXTERN_C_START
 
