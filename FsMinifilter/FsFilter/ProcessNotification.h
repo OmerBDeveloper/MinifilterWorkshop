@@ -1,14 +1,7 @@
 #pragma once
 #include <ntifs.h>
 #include "UnicodeString.h"
-
-typedef struct
-{
-	UINT32 processIndex;
-	PEPROCESS processes[65000];
-} ProcessArray;
-
-extern ProcessArray g_processArray;
+#include "Buffer.h"
 
 #define MAX_PATH 512
 
@@ -27,7 +20,7 @@ namespace ProcessNotification
 
 	bool checkIsVirus(UnicodeString& processPath);
 
-	bool searchInBuffer(const void* buffer, UINT32 bufferSize);
+	bool searchInBuffer(const Buffer& buffer);
 };
 
 

@@ -35,6 +35,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Buffer.cpp" />
+    <ClCompile Include="File.cpp" />
     <ClCompile Include="ProcessNotification.cpp" />
     <ClCompile Include="UnicodeString.cpp" />
     <ResourceCompile Include="FsFilter.rc" />
@@ -195,6 +197,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVDriver.h" />
+    <ClInclude Include="Buffer.h" />
+    <ClInclude Include="File.h" />
     <ClInclude Include="FsFilter.h" />
     <ClInclude Include="ProcessNotification.h" />
     <ClInclude Include="UnicodeString.h" />
