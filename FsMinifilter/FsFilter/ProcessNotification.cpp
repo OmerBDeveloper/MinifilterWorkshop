@@ -83,7 +83,7 @@ namespace ProcessNotification
 	bool searchInBuffer(const Buffer& buffer) {
 		const char virus[] = "virus";
 		for (ULONG i = 0; i < (buffer.size() - _ARRAYSIZE(virus)); ++i) {
-			if (RtlCompareMemory((char*)buffer.get() + i, virus, _ARRAYSIZE(virus)) == 5) {
+			if (RtlCompareMemory((char*)buffer.get() + i, virus, _ARRAYSIZE(virus)) == _ARRAYSIZE(virus)) {
 				return true;
 			}
 		}
