@@ -76,9 +76,8 @@ NTSTATUS DriverEntry (_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_STRING Reg
 		}
 
 		/************************************************************************/
-		/* STEP 4:																*
-		/*		Add a new process notification routine that saves the           *
-		/*		PEPROCESS's to a global array.									*
+		/* STEP 7:																*
+		/*		Register our process notification routine.	 					*
 		/*		Do not forget to unregister the process notification during		*
 		/*		driver unload.													*
 		/*																		*

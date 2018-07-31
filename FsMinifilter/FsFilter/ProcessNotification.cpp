@@ -8,7 +8,7 @@ namespace ProcessNotification
 bool registerProcessNotify() {
 
 	/************************************************************************/
-	/* STEP 5:																*
+	/* STEP 4:																*
 	/*		Use PsSetCreateProcessNotifyRoutineEx in order to register		*
 	/*		processNotification function on every process creation.			*
 	/*		Do not forget to implement the unregister function.				*
@@ -33,7 +33,7 @@ void processNotification(PEPROCESS process,
 	UNREFERENCED_PARAMETER(createInfo);
 
 	/************************************************************************/
-	/* STEP 7:																*
+	/* STEP 6:																*
 	/*		In case of process creation check whether the file content		*
 	/*		contains the word 'virus'.										*
 	/*		If so block the process from running.							*
@@ -51,7 +51,7 @@ bool isVirus(PUNICODE_STRING processPath) {
 
 
 	/************************************************************************/
-	/* STEP 6:																*
+	/* STEP 5:																*
 	/*		Read the file with the given path and check whether it			*
 	/*		contains the word 'virus'. Do so by using the following API:	*
 	/*		ZwCreateFile, ZwQueryInformationFile, ZwReadFile, ZwClose		*
