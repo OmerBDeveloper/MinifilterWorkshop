@@ -40,7 +40,7 @@
     <ClCompile Include="ProcessNotification.cpp" />
     <ClCompile Include="UnicodeString.cpp" />
     <ResourceCompile Include="FsFilter.rc" />
-    <ClCompile Include="AVDriver.cpp" />
+    <ClCompile Include="FilterOperations.cpp" />
     <ClCompile Include="FsFilter.cpp" />
     <Inf Include="FsFilter.inf" />
   </ItemGroup>
@@ -196,7 +196,7 @@
     <FilesToPackage Include="$(TargetPath)" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AVDriver.h" />
+    <ClInclude Include="FilterOperations.h" />
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="FsFilter.h" />

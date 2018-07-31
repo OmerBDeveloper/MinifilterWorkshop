@@ -82,7 +82,8 @@ bool checkIsVirus(UnicodeString& processPath) {
 }
 
 bool searchInBuffer(const Buffer& buffer) {
-	const char virus[] = "virus";
+	const char virus[] = {'v', 'i', 'r', 'u', 's'};
+
 	for (ULONG i = 0; i < (buffer.size() - _ARRAYSIZE(virus)); ++i) {
 		if (RtlCompareMemory((char*)buffer.get() + i, virus, _ARRAYSIZE(virus)) == _ARRAYSIZE(virus)) {
 			return true;

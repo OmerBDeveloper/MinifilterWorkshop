@@ -1,8 +1,8 @@
-#include "AVDriver.h"
+#include "FilterOperations.h"
 
 UNICODE_STRING THREAT_NAME = RTL_CONSTANT_STRING(L"*VIRUS*");
 
-BOOLEAN IsThreatByFilename(PUNICODE_STRING fileName) {
+BOOLEAN isThreatByFilename(PUNICODE_STRING fileName) {
 
 	/************************************************************************/
 	/* STEP 2:																*
@@ -23,7 +23,7 @@ BOOLEAN IsThreatByFilename(PUNICODE_STRING fileName) {
 }
 
 
-FLT_PREOP_CALLBACK_STATUS AntiVirusPreReadOperation(
+FLT_PREOP_CALLBACK_STATUS preCreateOperation(
 	_Inout_ PFLT_CALLBACK_DATA data,
 	_In_ PCFLT_RELATED_OBJECTS fltObjects,
 	_Flt_CompletionContext_Outptr_ PVOID* completionContext) {
@@ -31,7 +31,7 @@ FLT_PREOP_CALLBACK_STATUS AntiVirusPreReadOperation(
 	UNREFERENCED_PARAMETER(completionContext);
 
 	PUNICODE_STRING fileName = &fltObjects->FileObject->FileName;
-	if (IsThreatByFilename(fileName)) {
+	if (isThreatByFilename(fileName)) {
 
 		/************************************************************************/
 		/* STEP 3:																*
