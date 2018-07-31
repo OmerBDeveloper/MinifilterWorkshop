@@ -12,9 +12,7 @@ BOOLEAN isThreatByFilename(PUNICODE_STRING fileName) {
 	/************************************************************************/
 
 	// ENTER CODE HERE
-	//UNREFERENCED_PARAMETER(fileName);
-		fileName,
-	
+
 	UNREFERENCED_PARAMETER(fileName);
 
 	return false;
