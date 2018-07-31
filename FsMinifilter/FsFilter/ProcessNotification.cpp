@@ -1,6 +1,4 @@
 #include "ProcessNotification.h"
-#include "UnicodeString.h"
-#include "File.h"
 #include "FsFilter.h"
 
 
@@ -8,12 +6,22 @@ namespace ProcessNotification
 {
 
 bool registerProcessNotify() {
-	NTSTATUS status = PsSetCreateProcessNotifyRoutineEx(processNotification, FALSE);
-	return NT_SUCCESS(status);
+
+	/************************************************************************/
+	/* STEP 5:																*
+	/*		Use PsSetCreateProcessNotifyRoutineEx in order to register		*
+	/*		processNotification function on every process creation.			*
+	/*		Do not forget to implement the unregister function.				*
+	/*																		*
+	/************************************************************************/
+
+	// ENTER CODE HERE
+
+	return false;
 }
 
 void unregisterProcessNotify() {
-	PsSetCreateProcessNotifyRoutineEx(processNotification, TRUE);
+	// ENTER CODE HERE
 }
 
 void processNotification(PEPROCESS process,
@@ -22,73 +30,36 @@ void processNotification(PEPROCESS process,
 
 	UNREFERENCED_PARAMETER(processId);
 	UNREFERENCED_PARAMETER(process);
+	UNREFERENCED_PARAMETER(createInfo);
 
-	if (createInfo) {
-		UnicodeString processPath(MAX_PATH);
-		if (processPath.init()) {
-			processPath.copyFrom(createInfo->ImageFileName);
-			if (checkIsVirus(processPath)) {
-				createInfo->CreationStatus = STATUS_VIRUS_INFECTED;
-			}
-		}
-	}
+	/************************************************************************/
+	/* STEP 7:																*
+	/*		In case of process creation check whether the file content		*
+	/*		contains the word 'virus'.										*
+	/*		If so block the process from running.							*
+	/*		In order to get process name use: createInfo->ImageFileName		*
+	/*																		*
+	/************************************************************************/
+
+	// ENTER CODE HERE
+
 }
 
-bool checkIsVirus(UnicodeString& processPath) {
+bool isVirus(PUNICODE_STRING processPath) {
 
-	File file;
-	if (!file.init(processPath)) {
-		return false;
-	}
+	UNREFERENCED_PARAMETER(processPath);
 
-	UINT32 fileSize = 0;
-	if (!file.getFileSize(fileSize)) {
-		return false;
-	}
 
-	const UINT32 READ_MAX_SIZE = 0x1000;
-	
-	UINT32 readSize = READ_MAX_SIZE;
-	Buffer buffer;
-	if (!buffer.init(READ_MAX_SIZE)) {
-		return false;
-	}
+	/************************************************************************/
+	/* STEP 6:																*
+	/*		Read the file with the given path and check whether it			*
+	/*		contains the word 'virus'. Do so by using the following API:	*
+	/*		ZwCreateFile, ZwQueryInformationFile, ZwReadFile, ZwClose		*
+	/*																		*
+	/************************************************************************/
 
-	for (LONGLONG chunk = 0; chunk < (fileSize / readSize); ++chunk) {
-		if (!file.read(buffer)) {
-			return false;
-		}
+	// ENTER CODE HERE
 
-		if (searchInBuffer(buffer)) {
-			return true;
-		}
-	}
-
-	readSize = fileSize % READ_MAX_SIZE;
-	Buffer buffer2;
-	if (!buffer2.init(readSize)) {
-		return false;
-	}
-
-	if (!file.read(buffer2)) {
-		return false;
-	}
-
-	if (searchInBuffer(buffer2)) {
-		return true;
-	}
-
-	return false;
-}
-
-bool searchInBuffer(const Buffer& buffer) {
-	const char virus[] = {'v', 'i', 'r', 'u', 's'};
-
-	for (ULONG i = 0; i < (buffer.size() - _ARRAYSIZE(virus)); ++i) {
-		if (RtlCompareMemory((char*)buffer.get() + i, virus, _ARRAYSIZE(virus)) == _ARRAYSIZE(virus)) {
-			return true;
-		}
-	}
 	return false;
 }
 

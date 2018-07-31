@@ -35,10 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Buffer.cpp" />
-    <ClCompile Include="File.cpp" />
     <ClCompile Include="ProcessNotification.cpp" />
-    <ClCompile Include="UnicodeString.cpp" />
     <ResourceCompile Include="FsFilter.rc" />
     <ClCompile Include="FilterOperations.cpp" />
     <ClCompile Include="FsFilter.cpp" />
@@ -197,11 +194,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FilterOperations.h" />
-    <ClInclude Include="Buffer.h" />
-    <ClInclude Include="File.h" />
     <ClInclude Include="FsFilter.h" />
     <ClInclude Include="ProcessNotification.h" />
-    <ClInclude Include="UnicodeString.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

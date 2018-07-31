@@ -30,15 +30,6 @@
     <ClCompile Include="ProcessNotification.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UnicodeString.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="File.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Buffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FilterOperations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -52,16 +43,7 @@
     <ClInclude Include="ProcessNotification.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UnicodeString.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FsFilter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="File.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FilterOperations.h">

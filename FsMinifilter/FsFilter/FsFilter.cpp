@@ -68,9 +68,8 @@ NTSTATUS DriverEntry (_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_STRING Reg
 		/*		Compile and test the driver.									*
 		/*																		*
 		/************************************************************************/
+		
 		// ENTER CODE HERE
-		DbgPrint("Our Cool Driver :)\r\n");
-
 
 		if (!NT_SUCCESS( status )) {
 			FltUnregisterFilter( g_filterHandle );
@@ -79,10 +78,12 @@ NTSTATUS DriverEntry (_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_STRING Reg
 		/************************************************************************/
 		/* STEP 4:																*
 		/*		Add a new process notification routine that saves the           *
-		*		PEPROCESS's to a global array.									*
+		/*		PEPROCESS's to a global array.									*
+		/*		Do not forget to unregister the process notification during		*
+		/*		driver unload.													*
 		/*																		*
 		/************************************************************************/
-		ProcessNotification::registerProcessNotify();
+
 		// ENTER CODE HERE
 
 	}
@@ -95,7 +96,6 @@ NTSTATUS FsFilterUnload (_In_ FLT_FILTER_UNLOAD_FLAGS Flags) {
 	
 	UNREFERENCED_PARAMETER( Flags );
 
-	ProcessNotification::unregisterProcessNotify();
 	FltUnregisterFilter( g_filterHandle );
 
 	return STATUS_SUCCESS;
