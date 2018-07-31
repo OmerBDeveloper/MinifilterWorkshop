@@ -13,20 +13,18 @@ BOOLEAN isThreatByFilename(PUNICODE_STRING fileName) {
 
 	// ENTER CODE HERE
 	//UNREFERENCED_PARAMETER(fileName);
-	BOOLEAN isVirus = FsRtlIsNameInExpression(
-		&THREAT_NAME,
 		fileName,
-		TRUE,
-		NULL);
+	
+	UNREFERENCED_PARAMETER(fileName);
 
-	return isVirus;
+	return false;
 }
 
 
-FLT_PREOP_CALLBACK_STATUS preCreateOperation(
-	_Inout_ PFLT_CALLBACK_DATA data,
-	_In_ PCFLT_RELATED_OBJECTS fltObjects,
-	_Flt_CompletionContext_Outptr_ PVOID* completionContext) {
+FLT_PREOP_CALLBACK_STATUS preCreateOperation(_Inout_ PFLT_CALLBACK_DATA data,
+											 _In_ PCFLT_RELATED_OBJECTS fltObjects,
+											 _Flt_CompletionContext_Outptr_ PVOID* completionContext) 
+{
 
 	UNREFERENCED_PARAMETER(completionContext);
 
@@ -39,10 +37,10 @@ FLT_PREOP_CALLBACK_STATUS preCreateOperation(
 		/*		request and return a value which indicates that we are done		*		
 		/*		and the request is complete.									*
 		/************************************************************************/
+
 		// ENTER CODE HERE
-		data->IoStatus.Status = STATUS_VIRUS_INFECTED;
-		data->IoStatus.Information = 0;
-		return FLT_PREOP_COMPLETE;
+
+		return FLT_PREOP_SUCCESS_NO_CALLBACK;
 
 	} else {
 		data->IoStatus.Status = STATUS_SUCCESS;
